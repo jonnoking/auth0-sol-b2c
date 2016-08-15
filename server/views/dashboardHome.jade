@@ -1,0 +1,118 @@
+extends dashboardLayout
+
+block content
+  // begin breadcrumb
+  ol.breadcrumb.pull-right
+    li
+      a(href='javascript:;') Home
+    li.active Dashboard
+  // end breadcrumb
+  // begin page-header
+  h1.page-header
+    | Campaign Dashboard
+    small Manage the campaign here
+  // end page-header
+  // begin row
+  .row
+    // begin col-3
+    .col-md-3.col-sm-6
+      .widget.widget-stats.bg-pink
+        .stats-icon
+          i.material-icons desktop_windows
+        .stats-info
+          h4 TOTAL USERS
+          p(data-bind="text: results() ? results().total() : 'Unknown'") x
+        .stats-link
+          a(href='javascript:;')
+            | View Detail
+            i.fa.fa-arrow-circle-o-right
+    // end col-3
+    // begin col-3
+    .col-md-3.col-sm-6
+      .widget.widget-stats.bg-orange
+        .stats-icon
+          i.material-icons phonelink_erase
+        .stats-info
+          h4 BOUNCE RATE
+          p 20.44%
+        .stats-link
+          a(href='javascript:;')
+            | View Detail
+            i.fa.fa-arrow-circle-o-right
+    // end col-3
+    // begin col-3
+    .col-md-3.col-sm-6
+      .widget.widget-stats.bg-grey-600
+        .stats-icon
+          i.material-icons people_outline
+        .stats-info
+          h4 TOTAL LOGINS
+          p(data-bind='text: total_logins') 0
+        .stats-link
+          a(href='javascript:;')
+            | View Detail
+            i.fa.fa-arrow-circle-o-right
+    // end col-3
+    // begin col-3
+    .col-md-3.col-sm-6
+      .widget.widget-stats.bg-red
+        .stats-icon
+          i.material-icons timer
+        .stats-info
+          h4 AVG TIME ON SITE
+          p 00:12:23
+        .stats-link
+          a(href='javascript:;')
+            | View Detail
+            i.fa.fa-arrow-circle-o-right
+    // end col-3
+  // end row
+  // begin row
+  .row
+    // begin col-8
+    .col-md-12
+      // begin panel
+      .panel.panel-inverse(data-sortable-id='table-basic-2')
+        .panel-heading
+          .panel-heading-btn
+            a.btn.btn-xs.btn-icon.btn-circle.btn-default(href='javascript:;', data-click='panel-expand')
+              i.fa.fa-expand
+            a.btn.btn-xs.btn-icon.btn-circle.btn-success(href='javascript:;', data-click='panel-reload')
+              i.fa.fa-repeat
+            a.btn.btn-xs.btn-icon.btn-circle.btn-warning(href='javascript:;', data-click='panel-collapse')
+              i.fa.fa-minus
+            a.btn.btn-xs.btn-icon.btn-circle.btn-danger(href='javascript:;', data-click='panel-remove')
+              i.fa.fa-times
+          h4.panel-title Users
+        .panel-body
+          table.table.table-hover
+            thead
+              tr
+                th  
+                th Name
+                th Email
+                th Last Login
+                th Login Count
+                th Provider
+            tbody(data-bind='foreach: { data: users, afterRender: userTableAfterRender }')
+              tr
+                td
+                  a.user-info(href='javascript:;')
+                    img.happyface(width='32', data-bind="attr: {'src': picture, 'id': user_id}", alt='')
+                td(data-bind='text: $data.name')
+                td(data-bind='text: $data.email')
+                td(data-bind='text: $data.last_login')
+                td(data-bind='text: $data.logins_count')
+                td(data-bind='text: $data.identities()[0].provider')
+      // end panel
+    // end col-8
+  // end row
+  // begin row
+  .row
+    // begin col-8
+    .col-md-8
+    // end col-8
+    // begin col-4
+    .col-md-4
+    // end col-4
+  // end row
